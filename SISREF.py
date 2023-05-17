@@ -48,11 +48,19 @@ fig_justificacao, ax_justificacao = plt.subplots()
 ax_justificacao.pie(num_data.values,labels=num_data.index,autopct='%1.2f%%',pctdistance=0.8,labeldistance=1.2)
 st.pyplot(fig_justificacao)
 
+#mês que possui mais refeições
+st.subheader('Mês que possui mais refeições')
+num_refeic_mes = data['Mes_da_Refeicao'].value_counts()
+fig_refeicao_mes, ax_refeicao_mes = plt.subplots()
+ax_refeicao_mes.pie(num_refeic_mes.values,labels=num_refeic_mes.index,autopct='%1.2f%%',pctdistance=0.8,labeldistance=1.2)
+st.pyplot(fig_refeicao_mes)
+
 #Número de Refeições por curso
 st.subheader('Dados do número de Refeições dos cursos')
 num_if_total = data.groupby('Curso')['Compareceu'].value_counts()
 st.dataframe(num_if_total)
 
+#Quantidade de refeições por datas e cursos
 st.subheader('Datas que tiveram maior número de Refeições por curso')
 num_refeicao_curso = data.groupby('Curso')['Data da Solicitacao'].value_counts()
 st.dataframe(num_refeicao_curso)
